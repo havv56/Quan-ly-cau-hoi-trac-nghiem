@@ -1,0 +1,40 @@
+
+Story Title: Đăng nhập vào chương trình
+Description : Là học sinh/giảng viên/Quản lý tôi muốn đăng nhập bằng tài khoản của mình
+Narrative:
+1.     Khi NSD đăng nhập bằng tài khoản sinh viên thì chương trình xuất hiện trang quản lý chung của sinh viên đó
+2.     Khi NSD đăng nhập bằng tài khoản của giảng viên thì chương trình xuất hiện trang quản lý của giảng viên
+3.     Khi NSD đăng nhập bằng tài khoản của quản lý thì chương trình xuất hiện trang quản lý của admin
+4.     Khi NSD đăng nhập sai sẽ xuất hiện 1 thông báo, click OK để trở lại màn hình đăng nhập. 
+                                         *********************************************
+Story Title: Xây dựng kho câu hỏi trắc nghiệm.
+Description: là Quản lý tôi muốn xây dựng kho câu hỏi trắc nghiệm
+Nerrative:
+Sau khi đăng nhập, Quản lý  có thể chọn chức năng chọn môn học , và thêm vào câu hỏi trắc nghiệm theo dạng TOEFL, chỉ có 1 câu hỏi, bốn câu trả lời, và một đáp án đúng.
+ 
+                                       **********************************************
+
+Story Title: Trộn các đề trắc nghiệm
+Decription: Quản lý xây dựng chương trình trộn câu hỏi trắc nghiệm.
+Nerative:
+Sau khi đăng nhập ,Quản lý cập nhật kho câu hỏi trắc nghiệm và xây dựng một chương trình trộn câu hỏi trắc nghiệm ngẫu nhiên từ kho.
+
+                                       **********************************************
+
+Story Title: Cập nhật danh sách câu hỏi trắc nghiệm
+Description: Là quản lý tôi muốn cập nhật dữ liệu câu hỏi trắc nghiệm, chi tiết của từng môn.
+Là giáo viên, giảng viên tôi muốn đóng góp câu hỏi trắc nghiệm vào cơ sở dữ liệu.
+Nerrative:
+Sau khi đăng nhập bằng tài khoản quản lý, NSD có thể cập nhật các câu hỏi trắc nghiệm của từng môn học. 
+Sau khi đăng nhập bằng tài khoản giáo viên, giảng viên có thể yêu cầu quản lý về việc thêm các câu hỏi trắc nghiệm. 
+Quản lý sẽ kiểm tra và xem xét việc nhập các câu hỏi của giáo viên, giảng viên. 
+
+                                       **********************************************
+
+Story Title: Tra cứu câu hỏi trắc nghiệm
+Description: Là học sinh ,tôi muốn làm đề câu hỏi trắc nghiệm
+                    Là giảng viên ,tôi muốn xây dựng đề trắc nghiệm. 
+Nerrative:
+Sau khi đăng nhập, NSD có thể chọn chức năng chọn môn học , chọn số lượng câu hỏi trắc nghiệm và chương trình tiến hành trộn đề từ kho câu hỏi và xuất ra đề trắc nghiệm theo yêu cầu. 
+
+                                       **********************************************
