@@ -1,0 +1,22 @@
+{% extends "main/base.html" %}
+{% block title %}History |history.html {% endblock %}
+{% block content %}
+    <div class="span10">
+        <p style="font-size: 20px"><strong>{{ quizzes.title }}</strong></p><br>
+        {% if history %}
+            {% for his in history %}
+                <table class="table table-striped">
+                    <tbody>
+                    <tr><td>
+                        <p><strong>Time: {{ his.time }}</strong></p>
+                        <p><strong>User:</strong> {{ his.user }}</p>
+                        <p><strong>Score:</strong> {{ his.score }}/{{ his.quiz.mc.count }}</p>
+                    </td></tr>
+                    </tbody>
+                </table>
+            {% endfor %}
+        {% else %}
+            <p>There is no history here!</p>
+        {% endif %}
+    </div>
+{% endblock %}

@@ -1,0 +1,34 @@
+{% extends "main/base.html" %}
+{% block title %}show_quiz.html{% endblock %}
+{% block head %}Welcome to Hell{% endblock %}
+{% block content %}
+    <div class="span10">
+        <div class="form-actions">
+            {% include 'quizzes/liker.html' %}
+            <span style="margin-left: 5px"><strong>Title: </strong>{{ quizzes.title }}</span>
+            <p><strong>Description: </strong>{{ quizzes.description }}</p>
+            <p>Author: {% include 'account/user_label.html' %}
+                <span style="margin-left: 20px">Questions: {{ quizzes.mc.count }}</span></p><br>
+            <a href="/do_quizzes/?id={{ quizzes.quiz_id|escape }}" class="btn btn-inverse btn-small"><strong>Do this quiz</strong></a>
+            {% ifequal quizzes.user user %}
+                <div class="modal hide fade" id="myModalAdd" style="display: none;">
+                <div class="modal-header">
+                    <a data-dismiss="modal" class="close">x</a>
+                    <h3>Add a question</h3>
+                </div>
+                <form method="post" action="/mc/?id={{ quizzes.quiz_id|escape }}">{% csrf_token %}
+                    {% include 'quizzes/add_quest_include.html' %}
+                </form>
+                </div>
+                <span style="margin-left: 5px"><a class="btn btn-success btn-small" href="#myModalAdd" data-toggle="modal"><strong>Add question</strong></a>
+                <div class="nav pull-right">
+                    <a href="/edit_quiz/?id={{ quizzes.quiz_id|escape }}" class="btn btn-success btn-small"><strong>Edit</strong></a>
+                    <span style="margin-left: 5px"><a href="/delete/?id={{ quizzes.quiz_id|escape }}" class="btn btn-danger btn-small"><strong>Delete</strong></a></span>
+                </div>
+            {% endifequal %}
+        </div>
+        {% ifequal quizzes.user user %}
+            {% include "quizzes/questions_list.html" %}
+        {% endifequal %}
+    </div>
+{% endblock %}

@@ -1,0 +1,41 @@
+{% if quizzes %}
+    {% for quiz in quizzes %}
+	<table class="table table-striped">
+		<tbody>
+			<tr>
+				<td><span class="label label-success">{{ quiz.like.count }} <i class="icon-star icon-white"></i></span><span style="margin-left: 5px"><a href="/quizzes/?id={{ quiz.quiz_id|escape }}" style="font-size: 17px">{{ quiz.title }}</a></span>
+				<p><strong>Description:</strong> {{ quiz.description }}</p>
+                <p><strong>Questions:</strong> {{ quiz.mc.count }}<p>
+                <p><strong>Author: </strong> {% include 'account/user_label.html' %}<p></td>
+				<td width="5%">
+					<div class="dropdown">
+						<a href="#" data-toggle="dropdown" class="dropdown-toggle"><i class="icon-cog icon-black"></i></a>
+							<ul class="dropdown-menu">
+								<li><a href="/do_quizzes/?id={{ quiz.quiz_id|escape }}">Do this quiz</a></li>
+                                <li><a href="/quiz_his/?id={{ quiz.quiz_id|escape }}">View history</a></li>
+                                {% ifequal user quiz.user %}
+                                    <li><a href="/edit_quiz/?id={{ quiz.quiz_id|escape }}">Edit</a></li>
+                                    <li><a href="/delete/?id={{ quiz.quiz_id|escape }}">Delete</a></li>
+                                {% endifequal %}
+							</ul>
+					</div>
+				</td>
+			</tr>
+		</tbody>
+	</table> 
+    {% endfor %}
+    <div class="nav pull-right">
+    {% if show_paginator %}
+        {% if has_prev %}
+            <a class="btn btn-mini btn-inverse" href="?page={{ prev_page }}"><strong> << </strong></a>
+        {% endif %}
+        <span class="label">Page {{ page }} of {{ pages }}</span>
+        {% if has_next %}
+            <a class="btn btn-mini btn-inverse" href="?page={{ next_page }}"><strong> >> </strong></a>
+        {% endif %}
+    {% endif %}
+    </div>
+    <div style="margin-bottom: 80px"></div>
+{% else %}
+<p>There is no quizzes here!</p>
+{% endif %}

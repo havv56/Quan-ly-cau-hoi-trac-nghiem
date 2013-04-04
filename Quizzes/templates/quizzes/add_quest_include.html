@@ -1,0 +1,28 @@
+<div style="margin-left: 20px">
+	{% if form.errors %}
+		<p>{{ form.errors }}</p>
+	{% endif %}
+	<form method="post" action=".">{% csrf_token %}
+		{{ form.question.label }}
+		{{ form.question }}
+		<table>
+			<tbody>
+				{% for choice in form.choices.field.choices %}
+				<tr>
+					<td>
+						<label>{{choice.1}}</label><span style="margin-left:20px"></span>
+					</td>
+					<td>
+						<input type="radio" name="choices" value="{{choice.0}}" {% ifequal form.my_choice_field.data choice.0 %} checked="checked" {% endifequal %}/>
+					</td>
+					<td>
+						<span style="margin-left:20px">{% cycle form.answer_0 form.answer_1 form.answer_2 form.answer_3 %}</span>
+					</td>
+				</tr>
+				{% endfor %}
+			<tbody>
+		</table>
+        <input type="submit" value="Save" class="btn btn-success"/>
+        <span style="margin-left: 5px"><a data-dismiss="modal" class="btn btn-danger" href="#">Cancel</a></span>
+	</form>
+</div>

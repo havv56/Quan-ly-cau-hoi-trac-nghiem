@@ -1,0 +1,14 @@
+{% extends "main/base.html" %}
+{% block title %}Search Quiz{% endblock %}
+{% block head %}Search Quiz{% endblock %}
+{% block content %}
+    <div class="span10">
+        <form id="search-form" method="POST" action="."> {% csrf_token %}
+            {{ form.as_p }}
+            <input type="submit" value="Search" class="btn btn-info btn-small" />
+        </form>
+    </div>
+    <div id="search-results" class="span10">
+        {% include 'quizzes/quizzes_list.html' %}
+    </div>
+{% endblock %}

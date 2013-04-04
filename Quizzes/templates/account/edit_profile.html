@@ -1,0 +1,21 @@
+{% extends "main/base.html" %}
+{% block title %}edit_profile.html{% endblock %}
+{% block head %}Edit Profile{% endblock %}
+{% block ava %}
+    <a class="btn btn-info btn-small" href="/avatar/change/"><strong>Change avatar</strong></a><p></p>
+    <a class="btn btn-info btn-small" href="/avatar/delete/"><strong>Delete avatar</strong></a>
+{% endblock %}
+{% block content %}
+    <div class="span4">
+        <div class="well">
+            <form method="post" action=".">{% csrf_token %}
+                {{ form.as_p }}
+                <input type="hidden" name="next" value="/"/>
+                <div class="form_btn">
+                    <input type="submit" value="Done" class="btn btn-info"/>
+                    <a href="/" class="btn">Cancel</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock %}

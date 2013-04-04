@@ -1,0 +1,17 @@
+{% extends "main/base.html" %}
+{% block title %}profile.html{% endblock %}
+{% block head %}Profile{% endblock %}
+{% block content %}
+    <div class="span10">
+	<div class="well">
+        <p style="font-size: 30px"><strong>Profile of {{ first_name }} {{ last_name }}</strong></p>
+        <p><strong>Account: </strong>{{ username }}</p>
+        <p><strong>Contact:</strong></p>
+        <ul>
+            <p>{{ email }}</p>
+            <p>{{ phone_number }}</p>
+        </ul>
+	</div>
+    {% include 'quizzes/quizzes_list.html' %}
+    </div>
+{% endblock %}

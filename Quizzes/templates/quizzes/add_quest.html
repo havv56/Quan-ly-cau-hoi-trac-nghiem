@@ -1,0 +1,32 @@
+{% extends 'main/base.html' %}
+{% block title %}add_quest.html {% endblock %}
+{% block content %}
+    <div class="span10" style="margin-left: 20px">
+        {% if form.errors %}
+            <p>{{ form.errors }}</p>
+        {% endif %}
+        <form method="POST" action=".?id={{ id }}">{% csrf_token %}
+            {{ form.question.label }}
+            {{ form.question }}
+            <table>
+                <tbody>
+                    {% for choice in form.choices.field.choices %}
+                    <tr>
+                        <td>
+                            <label>{{choice.1}}</label><span style="margin-left:20px"></span>
+                        </td>
+                        <td>
+                            <input type="radio" name="choices" value="{{choice.0}}" {% ifequal form.my_choice_field.data choice.0 %} checked="checked" {% endifequal %}/>
+                        </td>
+                        <td>
+                            <span style="margin-left:20px">{% cycle form.answer_0 form.answer_1 form.answer_2 form.answer_3 %}</span>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                <tbody>
+            </table>
+            <input type="submit" value="Save" class="btn btn-success"/>
+            <span style="margin-left: 5px"><input type="button" value="Cancel" onclick="history.go(-1)" class="submit btn btn-danger"/></span>
+        </form>
+    </div>
+{% endblock %}

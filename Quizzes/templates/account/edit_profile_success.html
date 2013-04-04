@@ -1,0 +1,18 @@
+{% extends "main/base.html" %}
+
+{% block title %}
+    Your profile is updated!
+{%  endblock %}
+
+{% block content %}
+    <div class="alert alert-info">
+        This page will be redirected after 5 seconds.
+    </div>
+    <h2>Your profile is updated!</h2>
+    <p>Thank you for using our services! <br /></p>
+{% endblock %}
+
+
+{% block style %}
+    <meta http-equiv="Refresh" content="5; url=/">
+{% endblock %}

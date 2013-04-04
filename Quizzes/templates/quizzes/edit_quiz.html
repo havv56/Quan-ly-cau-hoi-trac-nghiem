@@ -1,0 +1,22 @@
+{% extends "main/base.html" %}
+{% block title %}{{ username }}{% endblock %}
+{% block head %}Quizzes for {{ username }}{% endblock %}
+{% block content %}
+    <div class="span10">
+        {% if form.errors %}
+            <p>{{ form.errors }}</p>
+        {% endif %}
+        <form method="post" action=".">{% csrf_token %}
+            <table>
+                {% for field in form %}
+                    <tr>
+                        <td>{{ field.label }}</td>
+                        <td>{{ field }}</td>
+                    </tr>
+                {% endfor %}
+            </table>
+            <input type="submit" value="Save" class="btn btn-success"/>
+            <input type="button" value="Back" onclick="javascrip:history.go(-1)" class="btn btn-danger">
+        </form>
+    </div>
+{% endblock %}

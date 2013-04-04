@@ -1,0 +1,23 @@
+{% if u %}
+    {% if u.is_staff %}
+        <a class="label label-important" href="/profile/?u={{ u }}">{{ u.first_name }} {{ u.last_name }}</a>
+    {% else %}
+        <a class="label label-info" href="/profile/?u={{ u }}">{{ u.first_name }} {{ u.last_name }}</a>
+    {% endif %}
+{% else %}
+    {% if quiz %}
+        {% if quiz.user.is_staff %}
+            <a class="label label-important" href="/profile/?u={{ quiz.user }}">{{ quiz.user.first_name }} {{ quiz.user.last_name }}</a>
+        {% else %}
+            <a class="label label-info" href="/profile/?u={{ quiz.user }}">{{ quiz.user.first_name }} {{ quiz.user.last_name }}</a>
+        {% endif %}
+    {% else %}
+        {% if quizzes %}
+            {% if quizzes.user.is_staff %}
+                <a class="label label-important" href="/profile/?u={{ quizzes.user }}">{{ quizzes.user.first_name }} {{ quizzes.user.last_name }}</a>
+            {% else %}
+                <a class="label label-info" href="/profile/?u={{ quizzes.user }}">{{ quizzes.user.first_name }} {{ quizzes.user.last_name }}</a>
+            {% endif %}
+        {% endif %}
+    {% endif %}
+{% endif %}

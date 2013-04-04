@@ -1,0 +1,12 @@
+<div class="modal hide fade" id="myModalAdd1" style="display: none;">
+    <div class="modal-header">
+        <a data-dismiss="modal" class="close">x</a>
+        <h3>Users like this</h3>
+    </div>
+    <div class="modal-body">
+        {% for u in quizzes.like.object_list %}
+            <span style="margin-left: 10px">{% include 'account/user_label.html' %}</span>
+        {% endfor %}
+    </div>
+</div>
+<a class="label label-success" href="#myModalAdd1" data-toggle="modal">{{ quizzes.like.count }} <i class="icon-star icon-white"></i></a>
