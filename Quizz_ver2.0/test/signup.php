@@ -1,21 +1,20 @@
 <?php
+
 include 'dbc.php';
 
 $query = "SELECT * FROM dadmin WHERE user='admin' ";
    $result=mysql_query($query);
 
-while($row = mysql_fetch_array($result))
-
- {
-$domain=$row['domain'];
-$banner=$row['banner'];
-$adminemail=$row['email'];
-$title=$row['title'];
-$footer=$row['footer'];
-$mgroup=$row['mgroup'];
-$mname=$row['mname'];
-$memconfrm=$row['memconfrm'];
-}
+	while($row = mysql_fetch_array($result)){
+		$domain=$row['domain'];
+		$banner=$row['banner'];
+		$adminemail=$row['email'];
+		$title=$row['title'];
+		$footer=$row['footer'];
+		$mgroup=$row['mgroup'];
+		$mname=$row['mname'];
+		$memconfrm=$row['memconfrm'];
+	}
 ?>
 <html>
 <head>
@@ -47,7 +46,7 @@ $memconfrm=$row['memconfrm'];
 <tr>
 
 <td width="980" valign=top >
-<img src="admin/images/logo.png<?php echo $banner;?>" >
+<img src="admin/logo/logo.gif<?php echo $banner;?>" >
 
 
 </td>
@@ -100,18 +99,42 @@ $memconfrm=$row['memconfrm'];
 
 
 <?php
+
 include 'dbc.php';
 
+//gan cac gia tri 
+if(isset($_POST['user'])){ $user = $_POST['user']; }
+else{ $user = NULL; }
+if(isset($_POST['pass'])){ $pass = $_POST['pass']; }
+else{ $pass = NULL; }
+if(isset($_POST['cpass'])){ $cpass = $_POST['cpass']; }
+else{ $cpass = NULL; }
+if(isset($_POST['email'])){ $email = $_POST['email']; }
+else{ $email = NULL; }
+if(isset($_POST['name'])){ $name = $_POST['name']; }
+else{ $name = NULL; }
+if(isset($_POST['group'])){ $group = $_POST['group']; }
+else{ $group = NULL; }
+if(isset($_POST['msg'])){ $msg = $_POST['msg']; }
+else{ $msg = NULL; }
+/*
+else{
+  $user = NULL;
+  $pass = NULL;
+  $cpass = NULL;
+  $email = NULL;
+  $name = NULL;
+  $group = NULL;
+  $msg = NULL;
+}  */
+/*
 $user=$_POST['user'];
 $pass=$_POST['pass'];
 $cpass=$_POST['cpass'];
 $email=$_POST['email'];
 $name=$_POST['name'];
 $group=$_POST['group'];
-
-
-
-
+*/
 if($user!=""){
 echo "<br>";
 $msg="";
@@ -130,14 +153,14 @@ $query = "SELECT email FROM dmember WHERE email='$email' ";
 
 if($pass==""){$msg=$msg."Password field empty!<br>";}
 if($pass!=""){
-if($pass!="$cpass"){$msg=$msg."Confirm Password didn't match!<br>";}
+if($pass!=$cpass){$msg=$msg."Confirm Password didn't match!<br>";}
 }
 
 if($name==""){$msg=$msg."Name field empty!<br>";}
 if($group==""){$msg=$msg."Please select atleast one group!<br>";}
 
 
-if(eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$", $email)) {
+if(@eregi("^[_a-z0-9-]+(\.[_a-z0-9-]+)*@[a-z0-9-]+(\.[a-z0-9-]+)*(\.[a-z]{2,3})$",$email)) {
 }
 else {
 
@@ -291,20 +314,6 @@ if($msg!=""){?>
 ?>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 </td>
 
 </tr></table>
@@ -333,20 +342,20 @@ if($msg!=""){?>
 </center><br>
 <font color="990000" size="3">
 *<font color="999999" size="3">
-User name: <br><input type="text" name="user" size="35" value="<?php echo $user;?>" tooltipText="Ten nguoi dung da ton tai, xin vui long nhap lai ten khac ">&nbsp;&nbsp;&nbsp;&nbsp;
+User name: <br><input type="text" name="user" size="35" value="<?php echo $user;?>" tooltipText="User name already exists, please re-enter another name ">&nbsp;&nbsp;&nbsp;&nbsp;
 <br><br>
 <font color="990000" size="3">
 *<font color="999999" size="3">
-M&#7853;t kh&#7849;u: &nbsp;<br><input type="password" name="pass" size="35"  value="<?php echo $pass;?>" tooltipText="Nhap mat khau manh, for eg. Ksa$567vFT " >&nbsp;&nbsp;&nbsp;&nbsp;
+M&#7853;t kh&#7849;u: &nbsp;<br><input type="password" name="pass" size="35"  value="<?php echo $pass;?>" tooltipText="Strong password, for eg. Ksa$567vFT " >&nbsp;&nbsp;&nbsp;&nbsp;
 <br><br>
 
 <font color="990000" size="3">
 *<font color="999999" size="3">
-Nh&#7853;p l&#7841;i: &nbsp; <br><input type="password" name="cpass" size="35" tooltipText="Mat khau phai trung voi mat khau ben tren" >&nbsp;&nbsp;&nbsp;&nbsp;
+Nh&#7853;p l&#7841;i: &nbsp; <br><input type="password" name="cpass" size="35" tooltipText="Password must match the password above" >&nbsp;&nbsp;&nbsp;&nbsp;
 <br><br>
 <font color="990000" size="3">
 *<font color="999999" size="3">
-e-mail: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><input type="text" name="email" size="35"  value="<?php echo $email;?>" tooltipText="Xin vui long dien Email hop le id,  eg. abcd@yahoo.com" > 
+e-mail: &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<br><input type="text" name="email" size="35"  value="<?php echo $email;?>" tooltipText="Please enter a valid email id,  eg. abcd@yahoo.com" > 
 <br><br>
 <?php
 
@@ -426,8 +435,7 @@ echo $row['groupname']; ?></option>
 
 </td>
 
-<td width="180"  valign=top><br>*<font color="999999" size="3"> Anh dai dien
-<br><br><br>
+<td width="180"  valign=top><br>*<font color="999999" size="3"> Avatar <br><br><br>
 
 <img src="admin/images/people.png" border="0">
 

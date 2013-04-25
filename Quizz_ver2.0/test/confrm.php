@@ -1,11 +1,9 @@
 <?php
 include 'dbc.php';
-include 'function.php';
 $user=$_POST['user'];
 $pass=$_POST['pass'];
 if($user!=""){
 $encrypass=md5($pass);
-$encodeuser=encodeuser($pass);
 $query = "SELECT user, pass FROM dmember WHERE user='$user' and pass='$encrypass' ";
    $result = mysql_query($query) or die(mysql_error());         
               if(mysql_num_rows($result)==1)
@@ -14,8 +12,9 @@ $query = "SELECT * FROM dmember WHERE user='$user' ";
    $result=mysql_query($query);
 while($row = mysql_fetch_array($result))
  {
-extract($row);
-encodepassword($encodeuser,$user, $email);
+$id=$row['id'];
+$actstatustmp=$row['actstatustmp'];
+$actstatus=$row['actstatus'];
 }
 if($actstatustmp=="1"){
 if($actstatus=="1"){
@@ -75,7 +74,7 @@ $memconfrm=$row['memconfrm'];
 <tr>
 
 <td width="980" valign=top >
-<img src="admin/logo/logo.gif<?php echo $banner;?>" >
+<img src="admin/<?php echo $banner;?>" >
 
 
 </td>
@@ -100,7 +99,18 @@ $memconfrm=$row['memconfrm'];
 
 
 
+<?php
+$activateid=$_GET['activateid'];
+if($activateid!=""){
 
+mysql_query("UPDATE dmember SET actstatus='1' WHERE  id='$activateid'  "); 
+
+mysql_query("UPDATE dmember SET actstatustmp='1' WHERE  id='$activateid'  "); 
+
+$activatedac=1;
+}
+
+?>
 
 
 
@@ -132,7 +142,7 @@ if($confrm=="1"){?>
 <td width="90"  >
 </td>
 <td width="160"  >
-<font color="green" size="3"> &nbsp;&nbsp; Loading</font>
+<font color="green" size="3"> &nbsp;&nbsp; Ch&#7901; m&#7897;t l&#225;t</font>
 
 <br>
 
@@ -160,7 +170,7 @@ if($confrm=="0"){?>
 </td>
 <td width="390"  >
 
-<font color=ffffff size=3>Sai t&#234;n ng&#432;&#7901;i d&#249;ng v&#224; m&#7853;t kh&#7849;u!<br>
+<font color=ffffff size=3>T&#224;i kho&#7843;n ho&#7863;c m&#7853;t kh&#7849;u sai !<br>
 
 </td>
 </tr></table></center>
@@ -168,6 +178,27 @@ if($confrm=="0"){?>
 <?php
 
 }
+
+
+if($activatedac=="1"){?>
+
+<br>
+<table bgcolor="ffffff" width="400"  border="0" cellspacing="0" cellpadding="0">
+<tr>
+<td width="10"  >
+</td>
+<td width="390"  >
+
+<font color=green size=3>K&#237;ch ho&#7841;t th&#224;nh c&#244;ng!<br>
+
+</td>
+</tr></table></center>
+
+<?php
+
+}
+
+
 
 if($confrm=="2"){?>
 
@@ -239,6 +270,7 @@ Li&#234;n h&#7879; qu&#7843;n tr&#7883;.<br>
 <font color="990000" size="3">
 <br>
 
+
 &#272;&#259;ng nh&#7853;p:
 </center><font color="999999" size="3">
 <form method="post" action="login.php">
@@ -248,7 +280,7 @@ User name: <input type="text" name="user" size="25" >&nbsp;&nbsp;&nbsp;&nbsp;
 Password: &nbsp;<input type="password" name="pass" size="25" >&nbsp;&nbsp;&nbsp;&nbsp;
 <br><br>
  
-<a href="signup.php"><font color="999999" size="3">&#272;&#259;ng k&#253;</a>&nbsp;&nbsp;&nbsp;&nbsp;
+<a href="signup.php"><font color="999999" size="3">Signup</a>&nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;
 &nbsp;&nbsp;&nbsp;&nbsp;
@@ -257,9 +289,6 @@ Password: &nbsp;<input type="password" name="pass" size="25" >&nbsp;&nbsp;&nbsp;
 <input type="image" src="admin/images/login.jpg" alt="Submit button">
 
 
-&nbsp;&nbsp;
-
-<a href="forgot.php"><font color="666666" soze="3">Qu&#234;n m&#7853;t kh&#7849;u ?</a>
 
 <br>
 
